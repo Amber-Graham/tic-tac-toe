@@ -39,3 +39,75 @@
   #welcome to the game > player1 name > player2 name >
   #loop of player1 choice > player2 choice until the board is filled
   #the outcome of the game will display followed by a play again prompt
+
+  board = [' ', ' ', ' ', ' ' , ' ' , ' ' , ' ' , ' ', ' ']
+
+  def display_board
+    puts row = ["|   " "|" "   " "|" "   |"]
+    puts separator = "+---+---+---+"
+    puts row
+    puts separator
+    puts row
+  end
+
+  def display_board(board)
+    puts "+---+---+---+"
+    puts "| #{board[0]} | #{board[1]} | #{board[2]} |"
+    puts "+---+---+---+"
+    puts "| #{board[3]} | #{board[4]} | #{board[5]} |"
+    puts "+---+---+---+"
+    puts "| #{board[6]} | #{board[7]} | #{board[8]} |"
+    puts "+---+---+---+"
+  end
+
+display_board(board)
+
+class Game 
+  def initialize(player1, player2)
+    @player1 = player1
+    @player2 = player2
+  end
+
+  def input_index(user_input)
+    user_input.to_i - 1
+  end
+
+  def move(board, index, player)
+    board[index] = player
+  end
+
+  def position_taken?(board, index)
+    if (board[index] == " ") || (board[index] == "") || (board[index] == nil )
+      false
+    else
+      true
+    end
+  end
+
+  def valid_move?(board, index)
+    if index.between?(0,8) && !position_taken?(board, index)
+      true
+    end
+  end
+
+
+
+  #my brain hurts, going to add things that i know i'll need
+
+  winning_combinations = [
+    [0, 1, 2]
+    [3, 4, 5]
+    [6, 7, 8]
+    [0, 3, 6]
+    [1, 4, 7]
+    [2, 5, 8]
+    [0, 4, 8]
+    [2, 4, 6]
+  ]
+
+  
+
+
+
+
+

@@ -62,12 +62,6 @@
 
 display_board(board)
 
-class Game 
-  def initialize(player1, player2)
-    @player1 = player1
-    @player2 = player2
-  end
-
   def input_index(user_input)
     user_input.to_i - 1
   end
@@ -138,7 +132,7 @@ class Game
     end
     display_board(board)
   end
-  
+
   
 
 
@@ -156,6 +150,43 @@ class Game
     [0, 4, 8]
     [2, 4, 6]
   ]
+
+   def won?(board)
+    winning_combinations.each do |winning_combinations|
+      win_index_1 = winning_combinations[0]
+      win_index_2 = winning_combinations[1]
+      win_index_3 = winning_combinations[2]
+
+      position_1 == position_2 && position_2 == position_3 && position_taken?(board, win_index_1)
+    end
+  end
+
+  def full?(board)
+    board.all? {|i| i == "X" || i == "O"}
+  end
+
+  def draw?(board)
+    if !won?(board) && full?(board)
+      return true
+    elsif !won?(board) && !full?(board)
+      return false
+    else won?(board)
+      return false
+    end
+  end
+
+  def over?(board)
+    if draw?(board) || won?(board) || full?(board)
+      return true
+    end
+  end
+
+  def winner(board)
+    if won?(board)
+      return board[won?(board)[0]]
+    end
+  end
+
 
   
 

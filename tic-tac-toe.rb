@@ -40,5 +40,60 @@
   #loop of player1 choice > player2 choice until the board is filled
   #the outcome of the game will display followed by a play again prompt
 
+#my first attempt failed miserably. I'm going to foucs on using classes this
+  #time. I will get it right.
 
+class Game
+  def initialize
+    @turn = [false, false]
+    create create_board
+
+    put "Let's play a new tic-tac-toe game!"
+    player1_name = get_name('1')
+    player1_symbol = get_symbol(player1_name)
+    @player1 = Player.new(player1_name, player1_symbol)
+    player2_name = get_name('2')
+    player2_symbol = get_symbol(player2_name)
+    @player2 = Player.new(player2_name, player2_symbol)
+    play
+  end
+
+  def play
+    pick_first
+    until game_end == true
+      display_board
+
+      player = @turn[0] ? @player1 : @player2
+      play_move(player, get_move(player))
+      @turn.reverse!
+    end
+    display_board
+    winner = @turn[0] ? player2 : player1
+    puts "#{winner} has won the game!"
+  end
+
+  private
+
+  def pick_first
+    @turn[rand(2)] = true
+  end
+
+  def create_board
+  end
+
+  def play_move
+  end
+
+  def get_name
+  end
+
+  def get_symbol
+  end
+
+  def display_board
+  end
+
+  def game_end
+  end
+  
 

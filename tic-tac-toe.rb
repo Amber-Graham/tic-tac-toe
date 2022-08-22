@@ -108,7 +108,40 @@ class Game
   #if one player wins, we check who won and leave a message
   #if theres a tie, print the tie message
 
+  def play(board)
+    counter = 0
+    until counter == 9
+      turn(board)
+      counter += 1
+    end
+  end
+
+  def play(board)
+    until over?(board)
+      turn(board)
+    end
+    if won?(board)
+      winner(board) == "X" || winner(board) == "O"
+      puts "Congratulations! #{winner(board)} has won the game!"
+    elsif draw?(board)
+      puts "It's a draw!"
+    end
+  end
+
+  def turn(board)
+    puts "Make your move. Enter 1-9:"
+    user_input = gets.strip
+    index = input_to_index(user_input)
+    if valid_move?(board, index)
+      move(board, index, current_player(board))
+      turn(board)
+    end
+    display_board(board)
+  end
   
+  
+
+
 
 
   #my brain hurts, going to add things that i know i'll need

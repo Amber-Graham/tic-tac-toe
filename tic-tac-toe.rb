@@ -90,6 +90,25 @@ class Game
     end
   end
 
+  def turn_count(board)
+    counter = 0
+    board.each do |spaces|
+      if spaces == "X" || spaces == "O"
+        counter += 1
+      end
+    end
+    counter
+  end
+
+  def current_player(board)
+    turn_count(board) % 2 == 0 ? "X" : "O"
+  end
+
+  #until the game is over the players keep taking turns
+  #if one player wins, we check who won and leave a message
+  #if theres a tie, print the tie message
+
+  
 
 
   #my brain hurts, going to add things that i know i'll need

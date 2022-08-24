@@ -7,8 +7,9 @@ class TicTacToe
   end
 
   def game_welcome
-    puts "LET'S GET READY TO TIC-TAC-TOEEEE!!!!"
     puts "+---+---+---+---+---+---+---+---+---+"
+    puts "LET'S GET READY TO TIC-TAC-TOEEEE!!!!"
+    puts "+---+---+---+---+---+---+---+---+---+\n\n"
     print "Player 1, what would you like to be called?\n"
     @name1 = gets.strip
     puts " "

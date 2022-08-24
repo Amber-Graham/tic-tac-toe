@@ -1,5 +1,5 @@
 class Game
-  def initialize
+  def initialize  #there has to be a better way to do this section
     @turn = [false, false]
     create_board
 

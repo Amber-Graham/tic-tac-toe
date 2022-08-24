@@ -129,7 +129,7 @@ class Game
         (@current_turn.even?) ? turn(@player1) : turn(@player2)
       end
     end
-    puts "Game was a draw!" if draw?
+    puts "The game was a draw!" if draw?
   end
 
   def turn(player)

@@ -60,8 +60,9 @@ class Board
 
   def create_board
     board = ""
+    puts "+---+---+---+"
       (0..8).step(3) do |i|
-        board += "| #{@spaces[i]} | #{@spaces[i + 1]} | #{@spaces[i + 2]} |\n"
+        board += "| #{@spaces[i]} | #{@spaces[i + 1]} | #{@spaces[i + 2]} |\n+---+---+---+\n"
       end
       puts board + "\n"
   end

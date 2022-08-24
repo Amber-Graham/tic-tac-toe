@@ -1,54 +1,9 @@
-#brainstorming session...
-
-#we need to initialize a board, so the board would be in a class.
-#i would think we would start with class Players, then initialize player1 and player2?
-#player1 and player2 would have choices that would also need to be stored
-#the board will be created and will remember the player choices
-
-#how do we initialize a board? i wonder if its a rows and column thing
-  #we call on or if we actually layout a board with dashes.
-
-#there are 3 outcomes: player1 wins, player2 wins, or a draw.
-
-#i'd like to have a play again?[Y/N] feature as well. this will just loop back
-  #to the beginning
-
-#we're going to ask each player what their name is. then we will ask
-  #each player where they want to play on the board. the choice will be permanent
-  #and will stay that way until a new change happens (i wonder if this means that 
-  #i will need to do attr_accessor on the choice?)
-
-#the board will look something like this:
-#  +---+---+---+
-#  | 1 | 2 | 3 |
-#  +---+---+---+
-#  | 4 | 5 | 6 |
-#  +---+---+---+
-#  | 7 | 8 | 9 |
-#  +---+---+---+
-
-#but i'm not sure if there is a way to make this with code. that will be one of the
-  #first things i check. I'm assuming there is a way to initialize this by passing
-  #arguments to the board. Not sure yet. 
-
-#i'm also not sure, but i'd like to make the board a fixed position in irb...
-  #i don't know if that's possible. if not, a new line of code will show the board
-  #with the reflected changes to it. I'd like it to auto-update if possible.
-
-#the flow will be:
-  #welcome to the game > player1 name > player2 name >
-  #loop of player1 choice > player2 choice until the board is filled
-  #the outcome of the game will display followed by a play again prompt
-
-#my first attempt failed miserably. I'm going to foucs on using classes this
-  #time. I will get it right.
-
 class Game
   def initialize
     @turn = [false, false]
     create_board
 
-    puts "Let's play a new tic-tac-toe game!"
+    puts "Let's get ready to tic-tac-toeeeeeeeeeee!!!!!"
     player1_name = get_name('1')
     player1_symbol = get_symbol(player1_name)
     @player1 = Player.new(player1_name, player1_symbol)
@@ -83,25 +38,19 @@ class Game
     gets.chomp.to_i
   end
 
-  def create_board
-    @board = {}
-    1.upto(9) do |num|
-      @board[num] = num.to_s
-    end
-  end
-
+  
   def play_move(player,square)
     if square.between?(1, 9) && @board[square] == square.to_s
       @board[square] = player.symbol
     else
-      puts "That square is taken! Please select a different square."
+      puts "That square is taken or it is not a valid move! Please make a new selection."
       play_move(player, get_move(player))
     end
   end
 
   def get_name(player_number)
-    puts "Player ##{player_number}, enter your name:"
-    player_name = gets.chomp
+    puts "Player ##{player_number}, what would you like to be called?"
+    player_name = gets.strip
     until player_name.length.positive?
       puts 'You must enter some characters as a name.'
       player_name = gets.strip
@@ -113,14 +62,21 @@ class Game
     if @player1
       player_symbol = @player1.symbol == 'x' ? 'o' : 'x'
     else
-      puts "#{player_name}, do you want to be 'x's or 'o's?"
+      puts "#{player_name}, please select your symbol: 'x' or 'o'."
       player_symbol = gets.chomp.downcase
       until %w[o x].include? player_symbol
-        puts "You must enter either 'x' or 'o'"
+        puts "You must enter 'x' or 'o'."
         player_symbol = gets.chomp.downcase
       end
     end
     player_symbol
+  end
+
+  def create_board
+    @board = {}
+    1.upto(9) do |num|
+      @board[num] = num.to_s
+    end
   end
 
   def display_board
